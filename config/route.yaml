@@ -1,0 +1,36 @@
+# Route definition for the Georgia Tech <-> Marietta I-75 commute.
+# EDIT start/end to your exact on-ramp and off-ramp. Coordinates are [lat, lon].
+
+name: "I-75 Georgia Tech - Marietta"
+
+# Northbound (evening, ~17:00): Downtown Connector at North Ave -> I-75 Exit 263.
+# Southbound (morning, ~10:00) uses the same points reversed.
+start: [33.7716, -84.3891]   # Downtown Connector (I-75/I-85) near North Ave on-ramp (assumed)
+end:   [33.9457, -84.5162]   # I-75 Exit 263, GA 120 Loop / Marietta Pkwy (ASSUMED default)
+
+# Optional via points [lat, lon] to force the router onto the I-75 mainline
+# (general-purpose lanes, not the Northwest Corridor express lanes). Listed in
+# northbound order; reversed automatically for southbound. Leave empty unless
+# the router picks the wrong road.
+via_northbound: []
+via_southbound: []
+
+# Bounding box for the Overpass speed-limit query: [south, west, north, east]
+bbox: [33.76, -84.58, 33.98, -84.38]
+
+# Routing server for the polyline. The public demo is fine for a one-off run.
+osrm_url: "https://router.project-osrm.org"
+overpass_url: "https://overpass-api.de/api/interpreter"
+
+# Elevation provider: "epqs" (USGS, US only, one point per request, accurate)
+# or "open-elevation" (batched, SRTM-based).
+elevation_provider: "epqs"
+
+# Speed-limit defaults when OSM has no maxspeed tag (mph).
+default_limit_inside_i285_mph: 55
+default_limit_outside_i285_mph: 65
+
+resample_step_m: 25
+segment_length_m: 100
+elevation_smoothing_m: 200
+max_abs_grade: 0.06

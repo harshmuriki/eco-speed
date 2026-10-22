@@ -1,0 +1,33 @@
+# 2026 Kia Sportage 2.5L petrol (FWD) — vehicle model parameters.
+# All values are APPROXIMATE starting points. Refine them in V1 with OBD-II data.
+
+vehicle_name: "2026 Kia Sportage 2.5L"
+
+mass_kg: 1700            # approx: curb mass (~1,620 kg) + driver
+cd: 0.33                 # approx: published Cd for this body style is ~0.33
+frontal_area_m2: 2.6     # approx: width x height x ~0.85
+crr: 0.010               # approx: typical all-season tyres on good asphalt
+rot_factor: 1.05         # approx: rotational inertia mass factor in top gear
+displacement_l: 2.5      # spec sheet; not used by the physics model yet (reserved for VT-Micro)
+idle_fuel_mls: 0.25      # approx: warm idle fuel flow, mL/s (~0.9 L/h)
+engine_eff: 0.30         # approx: brake-specific efficiency; re-scaled by calibration (see below)
+fuel_mj_per_l: 32.0      # approx: petrol / E10 lower heating value, MJ/L
+epa_hwy_mpg: 34          # approx: EPA highway rating used to calibrate engine_eff
+air_density: 1.2         # kg/m^3, ~20 C at Atlanta elevation
+
+# Calibrate engine_eff so steady 65 mph on flat ground returns epa_hwy_mpg.
+calibrate: true
+calibration_speed_mph: 65
+
+# ---- App / optimiser settings ----
+fuel_price_usd_per_gal: 3.20
+min_speed_mph: 45        # never advise below this on the highway
+max_accel_ms2: 0.8       # comfortable acceleration limit
+max_decel_ms2: 1.0       # comfortable deceleration limit (no hard braking)
+merge_speed_mph: 55      # entry speed at segment 0 (ramp merge)
+
+# Fuel-vs-time trade-off (mL of fuel per second of travel time).
+# null = choose automatically: the weight that saves the most fuel while adding
+# at most max_extra_time_s per trip versus the speed-limit baseline.
+time_weight: null
+max_extra_time_s: 120

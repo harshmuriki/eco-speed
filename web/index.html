@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Eco-Speed Advisor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- One-time safety disclaimer -->
+  <section id="screen-disclaimer" class="screen" hidden>
+    <div class="panel">
+      <h1>Before you drive</h1>
+      <p>Eco-Speed is <strong>advisory only</strong>. Always obey speed limits, traffic laws,
+        road and weather conditions, and the flow of traffic. Never follow a target speed when it
+        isn't safe.</p>
+      <p>Mount your phone before starting. Don't handle it while driving — the app needs no
+        input once a trip starts and ends trips on its own.</p>
+      <button id="btn-accept" class="btn btn-primary btn-xl">I understand</button>
+    </div>
+  </section>
+
+  <!-- Home -->
+  <section id="screen-home" class="screen" hidden>
+    <header class="topbar">
+      <div>
+        <h1 class="brand">Eco-Speed</h1>
+        <p class="sub" id="home-vehicle">2026 Kia Sportage · I-75</p>
+      </div>
+      <button id="btn-settings" class="btn btn-ghost" aria-label="Settings">Settings</button>
+    </header>
+    <div id="home-badges" class="badges"></div>
+    <button id="btn-start" class="btn btn-primary btn-start">Start</button>
+    <p class="hint" id="home-direction"></p>
+    <div class="cards">
+      <article class="card">
+        <h2>This month</h2>
+        <div id="home-month" class="stat-row"></div>
+      </article>
+      <article class="card" id="home-last-card" hidden>
+        <h2>Last trip</h2>
+        <div id="home-last" class="stat-row"></div>
+      </article>
+      <article class="card">
+        <h2>Route plan</h2>
+        <div id="home-plan" class="stat-row"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Driving -->
+  <section id="screen-drive" class="screen drive" hidden>
+    <div class="drive-top">
+      <span id="drive-status" class="status">Waiting for GPS…</span>
+      <div class="limit-sign" aria-label="Speed limit">
+        <span class="limit-word">SPEED<br>LIMIT</span>
+        <span id="drive-limit" class="limit-num">--</span>
+      </div>
+    </div>
+    <div class="speed-block">
+      <div id="drive-speed" class="speed">--</div>
+      <div class="speed-unit">mph</div>
+      <div class="target">Target <span id="drive-target">--</span></div>
+    </div>
+    <div id="drive-cue" class="cue cue-none">—</div>
+    <div class="drive-bottom">
+      <div class="mini"><span id="drive-mpg">--</span><small>trip mpg</small></div>
+      <div class="mini"><span id="drive-saved">--</span><small>gal saved</small></div>
+      <button id="btn-mute" class="btn btn-ghost btn-big" aria-pressed="false">Sound on</button>
+      <button id="btn-end" class="btn btn-ghost btn-big">End trip</button>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section id="screen-summary" class="screen" hidden>
+    <div class="panel">
+      <h1>Trip summary</h1>
+      <p class="sub" id="sum-sub"></p>
+      <div id="sum-stats" class="summary-grid"></div>
+      <p class="hint" id="sum-note"></p>
+      <button id="btn-done" class="btn btn-primary btn-xl">Done</button>
+    </div>
+  </section>
+
+  <!-- Settings -->
+  <section id="screen-settings" class="screen" hidden>
+    <div class="panel">
+      <h1>Settings</h1>
+      <label class="field">
+        <span>Petrol price ($/gal)</span>
+        <input id="set-price" type="number" inputmode="decimal" step="0.01" min="0">
+      </label>
+      <label class="field">
+        <span>Direction</span>
+        <select id="set-direction">
+          <option value="auto">Auto-detect from GPS</option>
+          <option value="northbound">Northbound (to Marietta)</option>
+          <option value="southbound">Southbound (to Georgia Tech)</option>
+        </select>
+      </label>
+      <label class="field field-row">
+        <span>Spoken cues</span>
+        <input id="set-audio" type="checkbox">
+      </label>
+      <div class="settings-actions">
+        <button id="btn-export" class="btn btn-ghost">Export last GPS log (JSON)</button>
+        <button id="btn-clear" class="btn btn-ghost btn-danger">Clear trip history</button>
+      </div>
+      <button id="btn-settings-done" class="btn btn-primary btn-xl">Save</button>
+    </div>
+  </section>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

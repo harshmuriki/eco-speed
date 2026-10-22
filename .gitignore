@@ -1,0 +1,5 @@
+pipeline/cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+web/data/*.png
