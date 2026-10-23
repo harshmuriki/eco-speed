@@ -1,0 +1,5 @@
+pipeline/
+tests/
+config/
+*.py
+web/data/*.png
